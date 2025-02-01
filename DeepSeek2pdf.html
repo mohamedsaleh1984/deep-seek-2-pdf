@@ -4,25 +4,29 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <style>
-    body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      max-width: 500px;
-      width: 500px;
-      padding: 10px;
-      background-color: #f9f9f9;
-      border: 1px solid #ccc;
-      border-radius: 5px;
-      overflow-y: scroll;
-      margin: 0 auto;
-    }
-  </style>
+  <link rel="stylesheet" href="styles.css">
   <script src="./dist/html2pdf.bundle.min.js" defer></script>
   <script src="popup.js" defer></script>
 </head>
 
 <body>
-  <h4> Hello, World</h4>
+  <div style="text-wrap:wrap">Click Get Chat Question then choose which questions you want to include in your PDF and
+    press download</pre>
+
+
+    <div id="gen-selection" class="gen-selection">
+    </div>
+
+    <button id="fetchButton" class="btn">Get Chat Questions</button>
+    <button id="downloadButton" class="btn">Download</button>
+    <!-- <button id="debugButton" class="btn">Debug</button> -->
+    <br />
+    <hr />
+    <div class="footer-div" id="footer-div">
+      <a href="https://www.buymeacoffee.com/mega785" id="a-buyme-coffee" class="buyme-coffee" target="_blank">Buy me
+        coffee</a>
+        <div id="notify-user">Hello, World</pre>
+    </div>
 </body>
 
 </html>

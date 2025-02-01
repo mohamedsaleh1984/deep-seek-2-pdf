@@ -1,0 +1,39 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    max-width: 500px;
+    width: 500px;
+    padding: 10px;
+    background-color: #f9f9f9;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    overflow-y: scroll;
+    margin: 0 auto;
+    max-height: 400px;
+}
+
+.a-buyme-coffee {
+    color: #1F51FF;
+}
+
+.btn {
+    margin: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 20px;
+    background-color: #1F51FF;
+    color: #f9f9f9;
+    font-weight: 800;
+    font-size: 16px;
+}
+
+.footer-div {
+    display: flex;
+    flex-direction: column;
+}
+
+.gen-selection {
+    max-height: 150px; 
+    overflow-y: auto;     
+    padding: 10px;
+    color: #1F51FF;
+}
