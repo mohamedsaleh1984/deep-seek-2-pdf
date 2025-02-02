@@ -170,6 +170,7 @@ document.addEventListener('DOMContentLoaded', () => {
                             if (item.answer) {
                                 rawData += `<div class=${cssClassAnswer}>${item.answer}</div>`;
                             }
+
                             const tempDiv = document.createElement('div');
                             tempDiv.innerHTML = rawData;
 
@@ -192,6 +193,8 @@ document.addEventListener('DOMContentLoaded', () => {
                     }
 
                     html2pdf().set(opt).from(content).save();
+
+                    reset();
                 }
             }
         );
