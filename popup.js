@@ -177,7 +177,8 @@ document.addEventListener('DOMContentLoaded', () => {
                         }
                     });
                     setStatus("CLEAR");
-                    content.querySelectorAll('input[type="checkbox"], button, svg').forEach(el => el.remove());
+                    // remove icons, buttons, copy
+                    content.querySelectorAll('input[type="checkbox"], button, svg, .md-code-block-banner').forEach(el => el.remove());
                     setStatus("DOWNLOADING")
 
                     const opt = {
