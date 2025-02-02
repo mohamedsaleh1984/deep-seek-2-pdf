@@ -105,7 +105,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
                         conversation.forEach((item, index) => {
                             const div = document.createElement('div');
-                            div.innerHTML = `<input type="checkbox" id="chk${index}" name="chk${index}"  /><label for="chk${index}">${first50Letters(item.question)}</label> `;
+                            div.innerHTML = `<input type="checkbox" id="chk${index}" name="chk${index}"  /><label style="cursor: pointer;" for="chk${index}">${first50Letters(item.question)}</label> `;
                             checkBoxContainer.appendChild(div);
                         });
 
