@@ -11,13 +11,5 @@
     "default_popup": "DeepSeek2pdf.html",
     "default_icon": "pdf.png"
   },
-  "permissions": ["activeTab", "scripting"],
-  "commands": {
-    "_execute_action": {
-      "suggested_key": {
-        "default": "Ctrl+B",
-        "mac": "Command+B"
-      }
-    }
-  }
+  "permissions": ["activeTab", "scripting","tabs"]
 }
