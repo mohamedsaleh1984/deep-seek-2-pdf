@@ -4,8 +4,19 @@
   "version": "1.0",
   "description": "Convert DeepSeek chat to pdf",
   "author": {
-    "name":"Mohamed Saleh",
+    "name": "Mohamed Saleh",
     "email": "mohamedsaleh1984@hotmail.com"
   },
-  "permissions": ["activeTab", "scripting","tabs"]
+  "permissions": [
+    "activeTab",
+    "scripting",
+    "tabs"
+  ],
+  "action": {
+    "default_popup": "DeepSeek2pdf.html",
+    "default_icon": "pdf.png"
+  },
+  "background": {
+    "service_worker": "service-worker.js"
+  }
 }
