@@ -7,9 +7,5 @@
     "name":"Mohamed Saleh",
     "email": "mohamedsaleh1984@hotmail.com"
   },
-  "action": {
-    "default_popup": "DeepSeek2pdf.html",
-    "default_icon": "pdf.png"
-  },
   "permissions": ["activeTab", "scripting","tabs"]
 }
