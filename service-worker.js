@@ -34,7 +34,7 @@ async function enablePopup() {
 }
 
 async function onUpdatedEventHandler(tabId, changeInfo, tab) {
-  const deepSeek = "https://";//"https://chat.deepseek.com/"
+  const deepSeek = "https://chat.deepseek.com/"
   if (tab.url.includes(deepSeek)) {
     enableIcon();
     enablePopup();
