@@ -6,6 +6,15 @@ const messges = {
     "FAILED_FETCH": "Failed to read DeepSeek chat, please refresh the page and try again."
 };
 
+const constValues = {
+    "question": "div[class=\"fbb737a4\"]",
+    "answer": "div[class=\"ds-markdown ds-markdown--block\"]",
+    "codeblock": ".md-code-block-banner",
+    "fetchButton": "fetchButton",
+    "downloadButton": "downloadButton",
+    "genSelection": "genSelection",
+    "notifyUser": "notifyUser"
+}
 
 document.addEventListener('DOMContentLoaded', () => {
 
