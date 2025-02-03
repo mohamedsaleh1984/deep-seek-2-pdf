@@ -1,6 +1,6 @@
 import {
-    messges,
     constValues,
+    messges,
     first50Letters,
     generateDiv,
     generateCheckBox,
