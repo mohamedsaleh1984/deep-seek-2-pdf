@@ -4,7 +4,8 @@ import {
     first50Letters,
     generateDiv,
     generateCheckBox,
-    generateRule
+    generateRule,
+    version
 } from "./utils.js";
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -66,7 +67,7 @@ document.addEventListener("DOMContentLoaded", () => {
         setStatus(messges.CLEAR);
 
         // remove children
-        checkBoxContainer.innerHTML = constValues.empty;
+        checkBoxContainer.innerHTML = version; // constValues.empty;
 
         // start traverse the page content and get the elments
         chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {

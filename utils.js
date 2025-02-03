@@ -55,3 +55,5 @@ export function generateCheckBox(index, question) {
 export function generateRule(className, rules) {
     return `.${className} { ${rules} }`;
 }
+
+export const version = "96.0.0";
