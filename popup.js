@@ -1,27 +1,26 @@
-const messges = {
-    "NO_SELECTION": "Please select questions and press Download.",
-    "SUCCESSFUL": "PDF has been compiled successfully.",
-    "DOWNLOADING": "PDF file is downloaded shortly.",
-    "CLEAR": "",
-    "FAILED_FETCH": "Failed to read DeepSeek chat, please refresh the page and try again."
-};
-
-const constValues = {
-    "question": "div[class=\"fbb737a4\"]",
-    "answer": "div[class=\"ds-markdown ds-markdown--block\"]",
-    "codeblock": ".md-code-block-banner",
-    "fetchButton": "fetchButton",
-    "downloadButton": "downloadButton",
-    "genSelection": "genSelection",
-    "notifyUser": "notifyUser"
-}
 
 document.addEventListener('DOMContentLoaded', () => {
+    const messges = {
+        "NO_SELECTION": "Please select questions and press Download.",
+        "SUCCESSFUL": "PDF has been compiled successfully.",
+        "DOWNLOADING": "PDF file is downloaded shortly.",
+        "CLEAR": "",
+        "FAILED_FETCH": "Failed to read DeepSeek chat, please refresh the page and try again."
+    };
+
+    const constValues = {
+        "question": "div[class=\"fbb737a4\"]",
+        "answer": "div[class=\"ds-markdown ds-markdown--block\"]",
+        "codeblock": ".md-code-block-banner",
+        "fetchButton": "fetchButton",
+        "downloadButton": "downloadButton",
+        "genSelection": "genSelection",
+        "notifyUser": "notifyUser"
+    }
 
 
     let fetchBtn = document.getElementById('fetchButton');
     let downloadButton = document.getElementById('downloadButton');
-    let debug = document.getElementById('debugButton');
     let checkBoxContainer = document.getElementById('gen-selection');
     let message = document.getElementById('notify-user');
     let g_TabID = -1;
