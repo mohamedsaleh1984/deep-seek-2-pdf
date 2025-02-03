@@ -43,9 +43,15 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     function extractElements() {
-        const userMessages = document.querySelectorAll(constValues.question);
+        const stquestion = constValues.question;
+        const stanswer = constValues.answer;
+
+        showMe(stquestion);
+        showMe(stanswer);
+
+        const userMessages = document.querySelectorAll(stquestion);
         showMe(userMessages)
-        const assistantMessages = document.querySelectorAll(constValues.answer);
+        const assistantMessages = document.querySelectorAll(stanswer);
         showMe(assistantMessages)
         let conversation = [];
 
@@ -119,13 +125,15 @@ document.addEventListener("DOMContentLoaded", () => {
 
         function fetchChat(tabId) {
             let conversation = [];
-            console.log('tabID', tabId)
+            showMe(tabId)
             chrome.scripting.executeScript(
                 {
                     target: { tabId: tabId },
                     function: extractElements
                 },
                 (results) => {
+                    showMe(results);
+
                     if (chrome.runtime.lastError) {
                         setStatus(messges.FAILED_FETCH);
                         return;
