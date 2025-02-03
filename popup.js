@@ -69,7 +69,7 @@ document.addEventListener("DOMContentLoaded", () => {
         setStatus(messges.CLEAR);
 
         // remove children
-        checkBoxContainer.innerHTML = version; // constValues.empty;
+        checkBoxContainer.innerHTML = constValues.empty;
 
         // start traverse the page content and get the elments
         chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
