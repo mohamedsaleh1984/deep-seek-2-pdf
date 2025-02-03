@@ -45,17 +45,16 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     function extractElements() {
-        const ums = qsaQuestions(document);
-        const ans = qsaAnswers(document);
-
+        const um = document.querySelectorAll('div[class="fbb737a4"]');
+        const ua = document.querySelectorAll('div[class="ds-markdown ds-markdown--block"]');
         let conversation = [];
 
-        ums.forEach((message, index) => {
-            const query = message.innerHTML;
-            const answer = ans[index] ? ans[index].innerHTML : '';
+        um.forEach((message, index) => {
+            const question = message.innerHTML;
+            const answer = ua[index] ? ua[index].innerHTML : '';
 
             conversation.push({
-                question: query.trim(),
+                question: question.trim(),
                 answer: answer.trim()
             });
         });
