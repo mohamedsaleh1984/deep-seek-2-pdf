@@ -16,7 +16,7 @@ export const constValues = {
     NOTIFY_MESSAGE: "notifyuser",
     deepSeekLink: "https://chat.deepseek.com/",
     dotdotdot: "...",
-    empty: ".",
+    empty: "''",
     style: "style",
     SELECTED_CHOICES: `input[type="checkbox"]:checked`,
     classesToRemove: 'input[type="checkbox"], button, svg, .md-code-block-banner',
