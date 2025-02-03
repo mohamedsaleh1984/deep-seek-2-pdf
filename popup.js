@@ -47,6 +47,34 @@ document.addEventListener('DOMContentLoaded', () => {
         return conversation;
     }
 
+    function createCSSRule(className, rules) {
+        let style = document.createElement('style');
+        style.type = 'text/css';
+        document.head.appendChild(style);
+
+        let rule = `.${className} { ${rules} }`;
+        style.sheet.insertRule(rule, 0);
+    }
+
+    function injectCssClass() {
+        createCSSRule('chat-query', ` color: #262626;
+                                        padding: 8px;
+                                        white-space: pre-wrap;
+                                        word-break: break-word;
+                                        background-color: #eff6ff;
+                                        border-radius: 10px;
+                                        max-width: calc(100% - 48px);
+                                        margin-bottom: 8px;
+                                        font-weight: bolder`);
+        createCSSRule('chat-answer', `margin-top: 10px;
+                                padding: 8px;
+                                border-radius: 10px;
+                                white-space: pre-wrap;
+                                word-break: break-word`);
+    }
+
+    injectCssClass();
+
     function first50Letters(str) {
         return str.length > 50 ? str.substring(0, 47) + "..." : str.substring(0, 50);
     }
@@ -187,7 +215,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         filename: `${g_FileName}.pdf`,
                         image: { type: 'jpeg', quality: 0.95 },
                         html2canvas: { scale: 2 },
-                        enableLinks:true,
+                        enableLinks: true,
                         jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' },
                         pagebreak: { mode: 'avoid-all', before: '#page2el' }
                     }

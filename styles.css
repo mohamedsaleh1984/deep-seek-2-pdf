@@ -25,26 +25,6 @@ body {
     color: #378de5;
 }
 
-.chat-query {
-    color: #262626;
-    padding: 8px;
-    white-space: pre-wrap;
-    word-break: break-word;
-    background-color: #eff6ff;
-    border-radius: 10px;
-    max-width: calc(100% - 48px);
-    margin-bottom: 8px;
-    font-weight: bolder;
-}
-
-.chat-answer {
-    margin-top: 10px;
-    padding: 8px;
-    border-radius: 10px;
-    white-space: pre-wrap;
-    word-break: break-word;
-}
-
 .div-header {
     text-wrap: wrap;
     font-weight: bold;
@@ -128,4 +108,3 @@ body {
     position: relative;
     top: 1px;
 }
-
