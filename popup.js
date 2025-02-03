@@ -25,6 +25,10 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
 
+    function showMe(data) {
+        console.log(data)
+    }
+
     function reset() {
         g_TabID = -1;
         g_FileName = constValues.empty;
@@ -40,7 +44,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
     function extractElements() {
         const userMessages = document.querySelectorAll(constValues.question);
+        showMe(userMessages)
         const assistantMessages = document.querySelectorAll(constValues.answer);
+        showMe(assistantMessages)
         let conversation = [];
 
         isNull(userMessages, 'userMessages', 'extractElements')
@@ -113,7 +119,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         function fetchChat(tabId) {
             let conversation = [];
-
+            console.log('tabID', tabId)
             chrome.scripting.executeScript(
                 {
                     target: { tabId: tabId },
