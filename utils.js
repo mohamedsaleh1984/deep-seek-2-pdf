@@ -1,9 +1,9 @@
 export const messges = {
-    "NO_SELECTION": "Please select questions and press Download.",
-    "SUCCESSFUL": "PDF has been compiled successfully.",
-    "DOWNLOADING": "PDF file is downloaded shortly.",
+    "NO_SELECTION": "Select questions and click Download.",
+    "SUCCESSFUL": "The PDF has been successfully compiled.",
+    "DOWNLOADING": "The PDF file will be downloaded soon.",
     "CLEAR": "",
-    "FAILED_FETCH": "Failed to read DeepSeek chat, please refresh the page and try again."
+    "FAILED_FETCH": "Unable to read DeepSeek chat. Please refresh the page and try again."
 };
 
 export const constValues = {
