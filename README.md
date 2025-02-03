@@ -40,4 +40,23 @@ javascript-obfuscator samples/sample.js --output output/output.js --compact true
 ```
 javascript-obfuscator ./popup.js --stringArrayEncoding false --unicodeEscapeSequence false --compact true
 npx javascript-obfuscator .\popup.js --output .\output.js --config .\obfuscate.config.js
+
+javascript-obfuscator .\popup.js --output .\output.js --config .\obfuscate.config.js
+```
+
+javascript-obfuscator .\popup.js --output .\output.js -- stringArrayEncoding none --debugProtectionInterval 2 --rotateStringArray true --unicodeEscapeSequence false --compact true
+
+
+Correct way to add params
+```
+javascript-obfuscator .\popup.js --output .\output.js -- stringArrayEncoding none -- debugProtectionInterval 2 -- rotateStringArray true -- unicodeEscapeSequence false -- compact true
+```
+
+Accepted by chrome
+```
+ javascript-obfuscator .\popup.js --output .\output.js -- stringArrayEncoding none -- rotateStringArray true -- unicodeEscapeSequence false
+```
+
+```
+ javascript-obfuscator .\popup.js --output .\output.js -- stringArrayEncoding none  -- unicodeEscapeSequence false 
 ```
