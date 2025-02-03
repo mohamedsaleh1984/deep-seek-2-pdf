@@ -35,3 +35,9 @@ javascript-obfuscator samples/sample.js --compact true --self-defending false
 javascript-obfuscator samples/sample.js --output output/output.js --compact true --self-defending false
 // creates a new file output/output.js
 ```
+
+
+```
+javascript-obfuscator ./popup.js --stringArrayEncoding false --unicodeEscapeSequence false --compact true
+npx javascript-obfuscator .\popup.js --output .\output.js --config .\obfuscate.config.js
+```
