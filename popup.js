@@ -19,14 +19,22 @@ document.addEventListener("DOMContentLoaded", () => {
     let g_TabID = -1;
     let g_FileName = constValues.empty;
 
+    function isNull(obj, objName, functionName) {
+        if (obj === null || obj === undefined) {
+            console.log(`${objName} is null at ${functionName} function`);
+        }
+    }
+
     function reset() {
         g_TabID = -1;
         g_FileName = constValues.empty;
         // remove children
+        isNull(checkBoxContainer, 'checkBoxContainer', 'reset');
         checkBoxContainer.innerHTML = constValues.empty;
-
     }
+
     function setStatus(msg) {
+        isNull(message, 'message', 'setStatus')
         message.innerText = msg;
     }
 
@@ -35,9 +43,15 @@ document.addEventListener("DOMContentLoaded", () => {
         const assistantMessages = document.querySelectorAll(constValues.answer);
         let conversation = [];
 
+        isNull(userMessages, 'userMessages', 'extractElements')
+        isNull(assistantMessages, 'assistantMessages', 'extractElements')
+
         userMessages.forEach((message, index) => {
             const question = message.innerHTML;
             const answer = assistantMessages[index] ? assistantMessages[index].innerHTML : constValues.empty;
+
+            isNull(question, 'question', 'foEach')
+            isNull(answer, 'answer', 'forEach')
 
             conversation.push({
                 question: question.trim(),
@@ -69,7 +83,9 @@ document.addEventListener("DOMContentLoaded", () => {
         setStatus(messges.CLEAR);
 
         // remove children
+        isNull(checkBoxContainer, 'checkBoxContainer', 'fetchBtn->click')
         checkBoxContainer.innerHTML = constValues.empty;
+
 
         // start traverse the page content and get the elments
         chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
@@ -105,7 +121,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 },
                 (results) => {
                     if (chrome.runtime.lastError) {
-                        message.innerText = messges.FAILED_FETCH;
+                        setStatus(messges.FAILED_FETCH);
                         return;
                     } else {
 
@@ -137,6 +153,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
         // Check Selection
         const checked = document.querySelectorAll(constValues.SELECTED_CHOICES);
+        isNull(checked, 'checked', 'downloadButton->click');
+
         if (checked.length == 0) {
             message.innerText = messges.NO_SELECTION;
             return;
