@@ -1,12 +1,8 @@
 {
   "manifest_version": 3,
-  "name": "DeepSeek2pdf",
+  "name": "DeepSeek chat to pdf",
   "version": "1.0",
-  "description": "Convert DeepSeek chat to pdf",
-  "author": {
-    "name": "Mohamed Saleh",
-    "email": "mohamedsaleh1984@hotmail.com"
-  },
+  "description": "Free extension to help users to convert DeepSeek chat to pdf file.",
   "permissions": [
     "activeTab",
     "scripting",
@@ -24,5 +20,5 @@
     "32": "icons/icon32.png",
     "48": "icons/icon48.png",
     "128": "icons/icon128.png"
-  } 
+  }
 }

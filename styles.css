@@ -18,7 +18,7 @@ body {
     color: #1b4d80;
 }
 
-.gen-selection {
+.genselection {
     max-height: 150px;
     overflow-y: auto;
     padding: 10px;

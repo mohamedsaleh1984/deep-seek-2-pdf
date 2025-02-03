@@ -1,50 +1,40 @@
+import {
+    messges,
+    constValues,
+    first50Letters,
+    generateDiv,
+    generateCheckBox,
+    generateRule
+} from "./utils.js";
 
-document.addEventListener('DOMContentLoaded', () => {
-    const messges = {
-        "NO_SELECTION": "Please select questions and press Download.",
-        "SUCCESSFUL": "PDF has been compiled successfully.",
-        "DOWNLOADING": "PDF file is downloaded shortly.",
-        "CLEAR": "",
-        "FAILED_FETCH": "Failed to read DeepSeek chat, please refresh the page and try again."
-    };
+document.addEventListener("DOMContentLoaded", () => {
+    const fetchBtn = document.getElementById(constValues.FETCH_BUTTON);
+    const downloadButton = document.getElementById(constValues.DOWNLOAD_BUTTON);
+    const checkBoxContainer = document.getElementById(constValues.SELECTION_AREA);
+    const message = document.getElementById(constValues.NOTIFY_MESSAGE);
 
-    const constValues = {
-        "question": "div[class=\"fbb737a4\"]",
-        "answer": "div[class=\"ds-markdown ds-markdown--block\"]",
-        "codeblock": ".md-code-block-banner",
-        "fetchButton": "fetchButton",
-        "downloadButton": "downloadButton",
-        "genSelection": "genSelection",
-        "notifyUser": "notifyUser"
-    }
-
-
-    let fetchBtn = document.getElementById('fetchButton');
-    let downloadButton = document.getElementById('downloadButton');
-    let checkBoxContainer = document.getElementById('gen-selection');
-    let message = document.getElementById('notify-user');
     let g_TabID = -1;
-    let g_FileName = "";
+    let g_FileName = constValues.empty;
 
     function reset() {
         g_TabID = -1;
-        g_FileName = "";
+        g_FileName = constValues.empty;
         // remove children
-        checkBoxContainer.innerHTML = '';
+        checkBoxContainer.innerHTML = constValues.empty;
 
     }
-    function setStatus(key) {
-        message.innerText = messges[key]
+    function setStatus(msg) {
+        message.innerText = msg;
     }
 
     function extractElements() {
-        const userMessages = document.querySelectorAll('div[class="fbb737a4"]');
-        const assistantMessages = document.querySelectorAll('div[class="ds-markdown ds-markdown--block"]');
+        const userMessages = document.querySelectorAll(constValues.question);
+        const assistantMessages = document.querySelectorAll(constValues.answer);
         let conversation = [];
 
         userMessages.forEach((message, index) => {
             const question = message.innerHTML;
-            const answer = assistantMessages[index] ? assistantMessages[index].innerHTML : '';
+            const answer = assistantMessages[index] ? assistantMessages[index].innerHTML : constValues.empty;
 
             conversation.push({
                 question: question.trim(),
@@ -56,47 +46,31 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function createCSSRule(className, rules) {
-        let style = document.createElement('style');
-        style.type = 'text/css';
+        let style = document.createElement(constValues.style);
+        style.type = constValues.textCss;
         document.head.appendChild(style);
 
-        let rule = `.${className} { ${rules} }`;
+        let rule = generateRule(className, rules)
         style.sheet.insertRule(rule, 0);
     }
 
     function injectCssClass() {
-        createCSSRule('chat-query', ` color: #262626;
-                                        padding: 8px;
-                                        white-space: pre-wrap;
-                                        word-break: break-word;
-                                        background-color: #eff6ff;
-                                        border-radius: 10px;
-                                        max-width: calc(100% - 48px);
-                                        margin-bottom: 8px;
-                                        font-weight: bolder`);
-        createCSSRule('chat-answer', `margin-top: 10px;
-                                padding: 8px;
-                                border-radius: 10px;
-                                white-space: pre-wrap;
-                                word-break: break-word`);
+        createCSSRule(constValues.chatQuery, constValues.cssQuery);
+        createCSSRule(constValues.chatAnswer, constValues.cssAnswer);
     }
 
     injectCssClass();
 
-    function first50Letters(str) {
-        return str.length > 50 ? str.substring(0, 47) + "..." : str.substring(0, 50);
-    }
-
     fetchBtn.addEventListener('click', () => {
         // Clear messages
-        setStatus("CLEAR");
+        setStatus(messges.CLEAR);
 
         // remove children
-        checkBoxContainer.innerHTML = '';
+        checkBoxContainer.innerHTML = constValues.empty;
 
         // start traverse the page content and get the elments
         chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
-            const deepSeek = "https://chat.deepseek.com/"
+            const deepSeek = constValues.deepSeekLink;
 
             if (tabs && tabs.length > 0) {
 
@@ -128,7 +102,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 },
                 (results) => {
                     if (chrome.runtime.lastError) {
-                        message.innerText = messges["FAILED_FETCH"]
+                        message.innerText = messges.FAILED_FETCH;
                         return;
                     } else {
 
@@ -141,7 +115,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
                         conversation.forEach((item, index) => {
                             const div = document.createElement('div');
-                            div.innerHTML = `<input type="checkbox" id="chk${index}" name="chk${index}"  /><label style="cursor: pointer;" for="chk${index}">${first50Letters(item.question)}</label> `;
+                            div.innerHTML = generateCheckBox(index, item.question);
                             checkBoxContainer.appendChild(div);
                         });
 
@@ -156,12 +130,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
     downloadButton.addEventListener('click', () => {
         // Clear messages
-        setStatus("CLEAR");
+        setStatus(messges.CLEAR);
 
         // Check Selection
-        const checked = document.querySelectorAll('input[type="checkbox"]:checked');
+        const checked = document.querySelectorAll(constValues.SELECTED_CHOICES);
         if (checked.length == 0) {
-            message.innerText = messges["NO_SELECTION"]
+            message.innerText = messges.NO_SELECTION;
             return;
         } else {
             generatePdf(checked);
@@ -182,13 +156,13 @@ document.addEventListener('DOMContentLoaded', () => {
             },
             (results) => {
                 if (chrome.runtime.lastError) {
-                    message.innerText = messges["FAILED_FETCH"]
+                    message.innerText = messges.FAILED_FETCH;
                     return;
                 }
 
                 let content = document.createElement('div')
-                let cssClassQuery = "chat-query";
-                let cssClassAnswer = "chat-answer";
+                let cssClassQuery = constValues.chatQuery;
+                let cssClassAnswer = constValues.chatAnswer;
 
                 if (results && results[0].result) {
                     conversation = results[0].result;
@@ -200,11 +174,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
                             let rawData = '';
                             if (item.question) {
-                                rawData += `<div class=${cssClassQuery}>${item.question}</div>`
+                                rawData += generateDiv(cssClassQuery, item.question);
 
                             }
                             if (item.answer) {
-                                rawData += `<div class=${cssClassAnswer}>${item.answer}</div>`;
+                                rawData += generateDiv(cssClassAnswer, item.answer);
                             }
 
                             const tempDiv = document.createElement('div');
@@ -213,10 +187,10 @@ document.addEventListener('DOMContentLoaded', () => {
                             content.appendChild(tempDiv);
                         }
                     });
-                    setStatus("CLEAR");
+                    setStatus(messges.CLEAR);
                     // remove icons, buttons, copy
-                    content.querySelectorAll('input[type="checkbox"], button, svg, .md-code-block-banner').forEach(el => el.remove());
-                    setStatus("DOWNLOADING")
+                    content.querySelectorAll(constValues.classesToRemove).forEach(el => el.remove());
+                    setStatus(messges.DOWNLOADING)
 
                     const opt = {
                         margin: 1,
@@ -235,4 +209,4 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         );
     }
-})
+});
