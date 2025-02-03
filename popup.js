@@ -21,7 +21,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     function isNull(obj, objName, functionName) {
         if (obj === null || obj === undefined) {
-            console.log(`${objName} is null at ${functionName} function`);
+            console.log(`${objName} is null or undefiend at ${functionName} function`);
         }
     }
 
@@ -104,10 +104,10 @@ document.addEventListener("DOMContentLoaded", () => {
                     g_FileName = first50Letters(tabObj.title);
                     fetchChat(g_TabID)
                 } else {
-
+                    console.error("Not deepseek chat url.")
                 }
             } else {
-                // not deepseek
+                console.error("Tabs issue.")
             }
         });
 
@@ -124,7 +124,7 @@ document.addEventListener("DOMContentLoaded", () => {
                         setStatus(messges.FAILED_FETCH);
                         return;
                     } else {
-
+                        console.log('No error')
                     }
 
                     g_TabID = tabId;
@@ -139,7 +139,7 @@ document.addEventListener("DOMContentLoaded", () => {
                         });
 
                     } else {
-
+                        console.error('Nothing to render')
                     }
                 }
             );
@@ -156,11 +156,11 @@ document.addEventListener("DOMContentLoaded", () => {
         isNull(checked, 'checked', 'downloadButton->click');
 
         if (checked.length == 0) {
-            message.innerText = messges.NO_SELECTION;
+            setStatus(messges.NO_SELECTION)
             return;
-        } else {
-            generatePdf(checked);
         }
+
+        generatePdf(checked);
     });
 
     function generatePdf(checked) {
@@ -179,6 +179,8 @@ document.addEventListener("DOMContentLoaded", () => {
                 if (chrome.runtime.lastError) {
                     message.innerText = messges.FAILED_FETCH;
                     return;
+                } else {
+                    console.log('no issue')
                 }
 
                 let content = document.createElement('div')
@@ -187,8 +189,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
                 if (results && results[0].result) {
                     conversation = results[0].result;
-
-
                     conversation.forEach((item, index) => {
                         if (ids.includes(index)) {
 
@@ -196,8 +196,8 @@ document.addEventListener("DOMContentLoaded", () => {
                             let rawData = '';
                             if (item.question) {
                                 rawData += generateDiv(cssClassQuery, item.question);
-
                             }
+
                             if (item.answer) {
                                 rawData += generateDiv(cssClassAnswer, item.answer);
                             }
