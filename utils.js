@@ -7,8 +7,6 @@ export const messges = {
 };
 
 export const constValues = {
-    question: `div[class="fbb737a4"]`,
-    answer: `div[class="ds-markdown ds-markdown--block"]`,
     codeblock: ".md-code-block-banner",
     FETCH_BUTTON: "fetchButton",
     DOWNLOAD_BUTTON: "downloadButton",
@@ -53,6 +51,20 @@ export function generateCheckBox(index, question) {
 
 export function generateRule(className, rules) {
     return `.${className} { ${rules} }`;
+}
+
+//querySelectorAll
+export function qsaQuestions(document) {
+    if (document instanceof Document) {
+        return document.querySelectorAll('div[class="fbb737a4"]')
+    }
+    return null;
+}
+export function qsaAnswers(document) {
+    if (document instanceof Document) {
+        return document.querySelectorAll('div[class="ds-markdown ds-markdown--block"]')
+    }
+    return null;
 }
 
 export const version = "96.0.0";

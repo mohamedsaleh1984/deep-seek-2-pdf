@@ -5,7 +5,9 @@ import {
     generateDiv,
     generateCheckBox,
     generateRule,
-    version
+    version,
+    qsaQuestions,
+    qsaAnswers
 } from "./utils.js";
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -43,31 +45,17 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     function extractElements() {
-        showMe("extractElements")
-        const stquestion = constValues.question;
-        const stanswer = constValues.answer;
+        const ums = qsaQuestions(document);
+        const ans = qsaAnswers(document);
 
-        showMe(stquestion);
-        showMe(stanswer);
-
-        const userMessages = document.querySelectorAll(stquestion);
-        showMe(userMessages)
-        const assistantMessages = document.querySelectorAll(stanswer);
-        showMe(assistantMessages)
         let conversation = [];
 
-        isNull(userMessages, 'userMessages', 'extractElements')
-        isNull(assistantMessages, 'assistantMessages', 'extractElements')
-
-        userMessages.forEach((message, index) => {
-            const question = message.innerHTML;
-            const answer = assistantMessages[index] ? assistantMessages[index].innerHTML : constValues.empty;
-
-            isNull(question, 'question', 'foEach')
-            isNull(answer, 'answer', 'forEach')
+        ums.forEach((message, index) => {
+            const query = message.innerHTML;
+            const answer = ans[index] ? ans[index].innerHTML : '';
 
             conversation.push({
-                question: question.trim(),
+                question: query.trim(),
                 answer: answer.trim()
             });
         });
