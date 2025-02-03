@@ -116,7 +116,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 if (tabUrl.substring(0, deepSeek.length) == deepSeek) {
                     g_FileName = first50Letters(tabObj.title);
                     showMe("Bfore Fetch chat");
-                    fetchChat(g_TabID)
+                    fetchChat()
                 } else {
                     console.error("Not deepseek chat url.")
                 }
@@ -125,12 +125,12 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         });
 
-        function fetchChat(tabId) {
+        function fetchChat() {
             let conversation = [];
-            showMe(tabId)
+            showMe(`g_TabID is ${g_TabID}`)
             chrome.scripting.executeScript(
                 {
-                    target: { tabId: tabId },
+                    target: { tabId: g_TabID },
                     function: extractElements
                 },
                 (results) => {
@@ -142,8 +142,6 @@ document.addEventListener("DOMContentLoaded", () => {
                     } else {
                         showMe('No error')
                     }
-
-                    g_TabID = tabId;
 
                     if (results && results[0].result) {
                         conversation = results[0].result;
