@@ -1,0 +1,11 @@
+,
+  // "web_accessible_resources": [
+  //   {
+  //     "resources": [
+  //       "utils.js"
+  //     ],
+  //     "matches": [
+  //       "<all_urls>"
+  //     ]
+  //   }
+  // ]

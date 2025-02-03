@@ -48,7 +48,7 @@ async function onUpdatedEventHandler(tabId, changeInfo, tab) {
 
 
 async function enableDisable(activeInfo) {
-  
+
   chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
 
     const activeTab = tabs[0];

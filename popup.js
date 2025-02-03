@@ -9,6 +9,8 @@ import {
 } from "./utils.js";
 
 document.addEventListener("DOMContentLoaded", () => {
+    console.log(`Extension Version: ${version}`);
+
     const fetchBtn = document.getElementById(constValues.FETCH_BUTTON);
     const downloadButton = document.getElementById(constValues.DOWNLOAD_BUTTON);
     const checkBoxContainer = document.getElementById(constValues.SELECTION_AREA);
