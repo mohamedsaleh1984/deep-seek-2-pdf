@@ -53,19 +53,4 @@ export function generateRule(className, rules) {
     return `.${className} { ${rules} }`;
 }
 
-//querySelectorAll
-export function qsaQuestions(document) {
-    if (document instanceof Document) {
-        return document.querySelectorAll('div[class="fbb737a4"]');
-    }
-    return [];
-}
-
-export function qsaAnswers(document) {
-    if (document instanceof Document) {
-        return document.querySelectorAll('div[class="ds-markdown ds-markdown--block"]');
-    }
-    return [];
-}
-
 export const version = "";
