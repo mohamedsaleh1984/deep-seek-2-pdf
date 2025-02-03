@@ -9,7 +9,7 @@ import {
 } from "./utils.js";
 
 document.addEventListener("DOMContentLoaded", () => {
-    console.log(`Extension Version: ${version}`);
+
 
     const fetchBtn = document.getElementById(constValues.FETCH_BUTTON);
     const downloadButton = document.getElementById(constValues.DOWNLOAD_BUTTON);
@@ -19,9 +19,11 @@ document.addEventListener("DOMContentLoaded", () => {
     let g_TabID = -1;
     let g_FileName = constValues.empty;
 
+    showMe(`Extension Version: ${version}`);
+
     function isNull(obj, objName, functionName) {
         if (obj === null || obj === undefined) {
-            console.log(`${objName} is null or undefiend at ${functionName} function`);
+            showMe(`${objName} is null or undefiend at ${functionName} function`);
         }
     }
 
@@ -138,7 +140,7 @@ document.addEventListener("DOMContentLoaded", () => {
                         setStatus(messges.FAILED_FETCH);
                         return;
                     } else {
-                        console.log('No error')
+                        showMe('No error')
                     }
 
                     g_TabID = tabId;
@@ -194,7 +196,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     message.innerText = messges.FAILED_FETCH;
                     return;
                 } else {
-                    console.log('no issue')
+                    showMe('no issue')
                 }
 
                 let content = document.createElement('div')
