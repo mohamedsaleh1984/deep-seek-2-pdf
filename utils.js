@@ -23,21 +23,20 @@ export const constValues = {
     textCss: "text/css",
     chatAnswer: "chat-answer",
     cssAnswer: `margin-top: 10px;
-                               padding: 8px;
-                               border-radius: 10px;
-                               white-space: pre-wrap;
-                               word-break: break-word`,
+                padding: 8px;
+                border-radius: 10px;
+                white-space: pre-wrap;
+                word-break: break-word`,
     chatQuery: "chat-query",
-    cssQuery: ` color: #262626;
-                                       padding: 8px;
-                                       white-space: pre-wrap;
-                                       word-break: break-word;
-                                       background-color: #eff6ff;
-                                       border-radius: 10px;
-                                       max-width: calc(100% - 48px);
-                                       margin-bottom: 8px;
-                                       font-weight: bolder`,
-
+    cssQuery: `color: #262626;
+                padding: 8px;
+                white-space: pre-wrap;
+                word-break: break-word;
+                background-color: #eff6ff;
+                border-radius: 10px;
+                max-width: calc(100% - 48px);
+                margin-bottom: 8px;
+                font-weight: bolder`
 }
 
 export function first50Letters(str) {

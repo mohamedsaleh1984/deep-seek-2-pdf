@@ -9,8 +9,6 @@ import {
 } from "./utils.js";
 
 document.addEventListener("DOMContentLoaded", () => {
-
-
     const fetchBtn = document.getElementById(constValues.FETCH_BUTTON);
     const downloadButton = document.getElementById(constValues.DOWNLOAD_BUTTON);
     const checkBoxContainer = document.getElementById(constValues.SELECTION_AREA);
@@ -45,6 +43,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     function extractElements() {
+        showMe("extractElements")
         const stquestion = constValues.question;
         const stanswer = constValues.answer;
 
@@ -104,11 +103,11 @@ document.addEventListener("DOMContentLoaded", () => {
         // start traverse the page content and get the elments
         chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
             const deepSeek = constValues.deepSeekLink;
-
+            showMe(deepSeek);
             if (tabs && tabs.length > 0) {
 
                 const tabObj = tabs[0];
-
+                showMe(tabObj);
                 const tabId = tabObj.id;
                 const tabUrl = tabObj.url;
 
@@ -116,6 +115,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
                 if (tabUrl.substring(0, deepSeek.length) == deepSeek) {
                     g_FileName = first50Letters(tabObj.title);
+                    showMe("Bfore Fetch chat");
                     fetchChat(g_TabID)
                 } else {
                     console.error("Not deepseek chat url.")
