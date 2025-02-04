@@ -5,7 +5,6 @@ import {
     generateDiv,
     generateCheckBox,
     generateRule,
-    version,
 } from "./utils.js";
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -17,28 +16,24 @@ document.addEventListener("DOMContentLoaded", () => {
     let g_TabID = -1;
     let g_FileName = constValues.empty;
 
-    showMe(`Extension Version: ${version}`);
-
     function isNull(obj, objName, functionName) {
         if (obj === null || obj === undefined) {
-            showMe(`${objName} is null or undefiend at ${functionName} function`);
+            console.log(`${objName} is null or undefiend at ${functionName} function`);
         }
     }
 
-    function showMe(data) {
-        console.log(data)
-    }
+
 
     function reset() {
         g_TabID = -1;
         g_FileName = constValues.empty;
         // remove children
-        isNull(checkBoxContainer, 'checkBoxContainer', 'reset');
+        // isNull(checkBoxContainer, 'checkBoxContainer', 'reset');
         checkBoxContainer.innerHTML = constValues.empty;
     }
 
     function setStatus(msg) {
-        isNull(message, 'message', 'setStatus')
+        // isNull(message, 'message', 'setStatus')
         message.innerText = msg;
     }
 
@@ -81,18 +76,17 @@ document.addEventListener("DOMContentLoaded", () => {
         setStatus(messges.CLEAR);
 
         // remove children
-        isNull(checkBoxContainer, 'checkBoxContainer', 'fetchBtn->click')
+        // isNull(checkBoxContainer, 'checkBoxContainer', 'fetchBtn->click')
         checkBoxContainer.innerHTML = constValues.empty;
 
 
         // start traverse the page content and get the elments
         chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
             const deepSeek = constValues.deepSeekLink;
-            showMe(deepSeek);
+
             if (tabs && tabs.length > 0) {
 
                 const tabObj = tabs[0];
-                showMe(tabObj);
                 const tabId = tabObj.id;
                 const tabUrl = tabObj.url;
 
@@ -100,7 +94,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
                 if (tabUrl.substring(0, deepSeek.length) == deepSeek) {
                     g_FileName = first50Letters(tabObj.title);
-                    showMe("Bfore Fetch chat");
                     fetchChat()
                 } else {
                     console.error("Not deepseek chat url.")
@@ -112,20 +105,17 @@ document.addEventListener("DOMContentLoaded", () => {
 
         function fetchChat() {
             let conversation = [];
-            showMe(`g_TabID is ${g_TabID}`)
             chrome.scripting.executeScript(
                 {
                     target: { tabId: g_TabID },
                     function: extractElements
                 },
                 (results) => {
-                    showMe(results);
-
                     if (chrome.runtime.lastError) {
                         setStatus(messges.FAILED_FETCH);
                         return;
                     } else {
-                        showMe('No error')
+
                     }
 
                     if (results && results[0].result) {
@@ -152,7 +142,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         // Check Selection
         const checked = document.querySelectorAll(constValues.SELECTED_CHOICES);
-        isNull(checked, 'checked', 'downloadButton->click');
+        // isNull(checked, 'checked', 'downloadButton->click');
 
         if (checked.length == 0) {
             setStatus(messges.NO_SELECTION)
@@ -179,7 +169,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     message.innerText = messges.FAILED_FETCH;
                     return;
                 } else {
-                    showMe('no issue')
+
                 }
 
                 let content = document.createElement('div')
