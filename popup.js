@@ -6,8 +6,6 @@ import {
     generateCheckBox,
     generateRule,
     version,
-    qsaQuestions,
-    qsaAnswers
 } from "./utils.js";
 
 document.addEventListener("DOMContentLoaded", () => {
