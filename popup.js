@@ -38,7 +38,7 @@ document.addEventListener("DOMContentLoaded", () => {
         let conversation = [];
 
         const um = document.querySelectorAll('div[class="fbb737a4"]');
-        const ua = document.querySelectorAll('div[class="f9bf7997 d7dc56a8 c05b5566"]');
+        const ua = document.querySelectorAll('div[class="f9bf7997 c05b5566"], div[class="f9bf7997 d7dc56a8 c05b5566"]');
 
         um.forEach((elem, index) => {
             const question = elem.innerHTML;
