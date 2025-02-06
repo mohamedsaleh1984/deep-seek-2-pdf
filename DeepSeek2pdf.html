@@ -6,23 +6,33 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="styles.css">
   <link href="https://fonts.googleapis.com/css?family=Cookie" rel="stylesheet">
+  <style>
+    .prevent-select {
+      -webkit-user-select: none;
+      /* Safari */
+      -ms-user-select: none;
+      /* IE 10 and IE 11 */
+      user-select: none;
+      /* Standard syntax */
+    }
+  </style>
 </head>
 
 <body>
   <div class="div-header">Click Get Chat Questions then choose which questions you want to include in your PDF and
     press download, that's it.</div>
-  <div id="genselection" class="genselection">
+  <div id="genselection" class="genselection prevent-select">
   </div>
 
-  <button id="fetchButton" title="Get Chat Questions" class="btn3">Get Chat Questions</button>
-  <button id="downloadButton" title="Download Selected Questions" class="btn3">Download</button>
+  <button id="fetchButton" title="Get Chat Questions" class="btn3 prevent-select ">Get Chat Questions</button>
+  <button id="downloadButton" title="Download Selected Questions" class="btn3 prevent-select ">Download</button>
 
   <div class="footer-div" id="footer-div">
-    <a class="bmc-button" target="_blank" href="https://www.buymeacoffee.com/mega785"><img
+    <a class="bmc-button prevent-select " target="_blank" href="https://www.buymeacoffee.com/mega785"><img
         src="https://www.buymeacoffee.com/assets/img/BMC-btn-logo.svg" alt="Buy me a coffee"><span
         style="margin-left:5px">Buy me a coffee</span></a>
 
-    <div id="notifyuser" style="font-weight: bold; margin-top: 5px;">
+    <div id="notifyuser" style="font-weight: bold; margin-top: 5px;" class="prevent-select">
     </div>
   </div>
 
