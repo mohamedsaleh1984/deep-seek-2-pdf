@@ -3,7 +3,8 @@ export const messges = {
     SUCCESSFUL: "The PDF has been successfully compiled.",
     DOWNLOADING: "The PDF file will be downloaded soon.",
     CLEAR: "",
-    FAILED_FETCH: "Unable to read DeepSeek chat. Please refresh the page and try again."
+    FAILED_FETCH: "Unable to read DeepSeek chat. Please refresh the page and try again.",
+    NOTHING_TO_RENDER: "No content to read."
 };
 
 export const constValues = {
@@ -37,18 +38,22 @@ export const constValues = {
                 font-weight: bolder`
 }
 
+//  fetch first 50 characters of string if it's LONGER
 export function first50Letters(str) {
     return str.length > 50 ? str.substring(0, 47) + constValues.dotdotdot : str.substring(0, 50);
 }
 
+// Create DIV
 export function generateDiv(cssClass, question) {
     return `<div class=${cssClass}>${question}</div>`
 }
 
+// Create Checkbox
 export function generateCheckBox(index, question) {
-    return `<input type="checkbox" id="chk${index}" name="chk${index}"  /><label style="cursor: pointer;" for="chk${index}">${first50Letters(question)}</label> `;
+    return `<input type="checkbox" id="chk${index}" name="chk${index}"/><label style="cursor: pointer;" for="chk${index}">${first50Letters(question)}</label> `;
 }
 
+// Create CSS Class
 export function generateRule(className, rules) {
     return `.${className} { ${rules} }`;
 }

@@ -7,7 +7,9 @@ import {
     generateRule,
 } from "./utils.js";
 
+// When DOM is loaded
 document.addEventListener("DOMContentLoaded", () => {
+    // UI Components
     const fetchBtn = document.getElementById(constValues.FETCH_BUTTON);
     const downloadButton = document.getElementById(constValues.DOWNLOAD_BUTTON);
     const checkBoxContainer = document.getElementById(constValues.SELECTION_AREA);
@@ -16,14 +18,7 @@ document.addEventListener("DOMContentLoaded", () => {
     let g_TabID = -1;
     let g_FileName = constValues.empty;
 
-    function isNull(obj, objName, functionName) {
-        if (obj === null || obj === undefined) {
-            console.log(`${objName} is null or undefiend at ${functionName} function`);
-        }
-    }
-
-
-
+    // Clear status
     function reset() {
         g_TabID = -1;
         g_FileName = constValues.empty;
@@ -32,18 +27,21 @@ document.addEventListener("DOMContentLoaded", () => {
         checkBoxContainer.innerHTML = constValues.empty;
     }
 
+    // Notify the user 
     function setStatus(msg) {
         // isNull(message, 'message', 'setStatus')
         message.innerText = msg;
     }
 
+    // extract chat components/classes
     function extractElements() {
-        const um = document.querySelectorAll('div[class="fbb737a4"]');
-        const ua = document.querySelectorAll('div[class="ds-markdown ds-markdown--block"]');
         let conversation = [];
 
-        um.forEach((message, index) => {
-            const question = message.innerHTML;
+        const um = document.querySelectorAll('div[class="fbb737a4"]');
+        const ua = document.querySelectorAll('div[class="ds-markdown ds-markdown--block"]');
+
+        um.forEach((elem, index) => {
+            const question = elem.innerHTML;
             const answer = ua[index] ? ua[index].innerHTML : '';
 
             conversation.push({
@@ -55,6 +53,7 @@ document.addEventListener("DOMContentLoaded", () => {
         return conversation;
     }
 
+    // Create CSS Class
     function createCSSRule(className, rules) {
         let style = document.createElement(constValues.style);
         style.type = constValues.textCss;
@@ -69,17 +68,14 @@ document.addEventListener("DOMContentLoaded", () => {
         createCSSRule(constValues.chatAnswer, constValues.cssAnswer);
     }
 
+    // Add CSS to DOM
     injectCssClass();
 
     fetchBtn.addEventListener('click', () => {
         // Clear messages
         setStatus(messges.CLEAR);
-
         // remove children
-        // isNull(checkBoxContainer, 'checkBoxContainer', 'fetchBtn->click')
         checkBoxContainer.innerHTML = constValues.empty;
-
-
         // start traverse the page content and get the elments
         chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
             const deepSeek = constValues.deepSeekLink;
@@ -114,8 +110,6 @@ document.addEventListener("DOMContentLoaded", () => {
                     if (chrome.runtime.lastError) {
                         setStatus(messges.FAILED_FETCH);
                         return;
-                    } else {
-
                     }
 
                     if (results && results[0].result) {
@@ -128,7 +122,7 @@ document.addEventListener("DOMContentLoaded", () => {
                         });
 
                     } else {
-                        console.error('Nothing to render')
+                        setStatus(messges.NOTHING_TO_RENDER);
                     }
                 }
             );
@@ -183,6 +177,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
                             let rawData = '';
+                            // Sanity check
                             if (item.question) {
                                 rawData += generateDiv(cssClassQuery, item.question);
                             }
@@ -197,9 +192,12 @@ document.addEventListener("DOMContentLoaded", () => {
                             content.appendChild(tempDiv);
                         }
                     });
+
                     setStatus(messges.CLEAR);
-                    // remove icons, buttons, copy
+
+                    // remove icons, buttons, checkboxes...etc (Can extend)
                     content.querySelectorAll(constValues.classesToRemove).forEach(el => el.remove());
+
                     setStatus(messges.DOWNLOADING)
 
                     const opt = {
