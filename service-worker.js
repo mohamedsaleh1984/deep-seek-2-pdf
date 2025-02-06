@@ -3,65 +3,45 @@ const icons = {
   disabled: "pdf-gs.png"
 };
 
+// chrome tabs events
+// when user activate a tab
 chrome.tabs.onActivated.addListener(enableDisable);
+// when user highlight
 chrome.tabs.onHighlighted.addListener(enableDisable);
-chrome.tabs.onUpdated.addListener(onUpdatedEventHandler)
+// when user change the current URL in the tab
+chrome.tabs.onUpdated.addListener(onUpdatedEventHandler);
 
 
-function resolveAfter2Seconds(x) {
-  return new Promise((resolve) => {
-    setTimeout(() => {
-      resolve(x);
-    }, 0);
-  });
-}
-
-
-async function disableIcon() {
-  return chrome.action.setIcon({ path: icons.disabled });
-}
-async function disablePopup() {
-  return chrome.action.setPopup({ popup: "" });
-}
-
-
-async function enableIcon() {
-  return chrome.action.setIcon({ path: icons.enabled });
-}
-
-async function enablePopup() {
-  return chrome.action.setPopup({ popup: "DeepSeek2pdf.html" });
+function enableExtension(flag) {
+  console.log('enableExtension ', flag)
+  if (flag) {
+    chrome.action.setIcon({ path: icons.enabled });
+    chrome.action.setPopup({ popup: "DeepSeek2pdf.html" });
+    return;
+  }
+  chrome.action.setPopup({ popup: "" });
+  chrome.action.setIcon({ path: icons.disabled });
 }
 
 async function onUpdatedEventHandler(tabId, changeInfo, tab) {
+  console.log('onUpdatedEventHandler ', tab)
   const deepSeek = "https://chat.deepseek.com/"
   if (tab.url.includes(deepSeek)) {
-    enableIcon();
-    enablePopup();
+    enableExtension(true);
   } else {
-    disableIcon();
-    disablePopup();
+    enableExtension(false);
   }
-  await resolveAfter2Seconds(0);
 }
 
-
-
-async function enableDisable(activeInfo) {
-
+function enableDisable(activeInfo) {
   chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
-
     const activeTab = tabs[0];
     const deepSeek = "https://chat.deepseek.com/"
 
     if (activeTab.url.includes(deepSeek)) {
-      enableIcon();
-      enablePopup();
+      enableExtension(true);
     } else {
-      disableIcon();
-      disablePopup();
+      enableExtension(false);
     }
-
   });
-  await resolveAfter2Seconds(0);
 }
