@@ -18,7 +18,7 @@ export const constValues = {
     empty: "",
     style: "style",
     SELECTED_CHOICES: `input[type="checkbox"]:checked`,
-    classesToRemove: 'input[type="checkbox"], button, svg, .md-code-block-banner',
+    classesToRemove: 'input[type="checkbox"], button, svg, .md-code-block-banner, div[class="a6d716f5 db5991dd"]',
     textCss: "text/css",
     chatAnswer: "chat-answer",
     cssAnswer: `margin-top: 10px;
