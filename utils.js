@@ -1,10 +1,10 @@
 export const messges = {
-    NO_SELECTION: "Select questions and click Download.",
-    SUCCESSFUL: "The PDF has been successfully compiled.",
-    DOWNLOADING: "The PDF file will be downloaded soon.",
+    NO_SELECTION: "Go ahead and pick your queries, then hit Download!",
+    SUCCESSFUL: "Your PDF is all set and ready to go! 🎉",
+    DOWNLOADING: "Your PDF will be on its way to you in just a moment!",
     CLEAR: "",
-    FAILED_FETCH: "Unable to read DeepSeek chat. Please refresh the page and try again.",
-    NOTHING_TO_RENDER: "No content to read."
+    FAILED_FETCH: "Oops! We couldn’t access the DeepSeek chat. Mind refreshing the page and giving it another shot?",
+    NOTHING_TO_RENDER: "Looks like there’s nothing here to read at the moment! 🧐"
 };
 
 export const constValues = {
@@ -50,7 +50,11 @@ export function generateDiv(cssClass, question) {
 
 // Create Checkbox
 export function generateCheckBox(index, question) {
-    return `<input type="checkbox" id="chk${index}" name="chk${index}"/><label style="cursor: pointer;" for="chk${index}">${first50Letters(question)}</label> `;
+    let strItem = ` <label class="checkbox-item" itemprop="itemListElement">` +
+        ` <input type="checkbox" id="chk${index}" name="chk${index} itemprop="checked"> ` +
+        ` <label itemprop="name"  for="chk${index}">${first50Letters(question)}</label>` +
+        ` </label>`
+    return strItem;
 }
 
 // Create CSS Class

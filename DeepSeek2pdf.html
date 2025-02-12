@@ -4,38 +4,48 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Generate PDF from your DeepSeek chat.">
+  <meta name="keywords"
+    content="deepseek, pdf, chat, export, generate, DeepSeek R1, chinese ai, gpt, DeepSeek AI,DeepSeek extension,DeepSeek plugin,DeepSeek tool,">
   <link rel="stylesheet" href="styles.css">
-  <link href="https://fonts.googleapis.com/css?family=Cookie" rel="stylesheet">
-  <style>
-    .prevent-select {
-      -webkit-user-select: none;
-      /* Safari */
-      -ms-user-select: none;
-      /* IE 10 and IE 11 */
-      user-select: none;
-      /* Standard syntax */
-    }
-  </style>
 </head>
 
 <body>
-  <div class="div-header">Click Get Chat Questions then choose which questions you want to include in your PDF and
-    press download, that's it.</div>
-  <div id="genselection" class="genselection prevent-select">
+  <div class="popup-container">
+    <header class="popup-header">
+      Just click ‘Retrieve Chat Queries’, then pick the ones you’d like to include in your PDF. Once you’re ready, hit
+      Generate PDF—and voilà, you’re done! 🎉 Easy peasy!
+    </header>
+    <section class="popup-content" itemprop="mainEntity">
+      <div id="genselection" class="checkbox-list">
+      </div>
+      <div style="display: flex;">
+        <button id="fetchButton" class="btn btn-primary" itemprop="potentialAction" style="margin-right: 10px;">
+          <span>
+            Retrieve Chat Queries
+          </span>
+        </button>
+        <button id="downloadButton" class="btn btn-primary" itemprop="potentialAction">
+          <span>
+            Generate PDF
+          </span>
+        </button>
+      </div>
+
+
+      <div style="margin-top: 10px;">
+        <a class="btn" target="_blank" href="https://www.buymeacoffee.com/mega785"
+          style="background-color: var(--accent-yellow);" title="Buy me coffee"><img
+            src="https://www.buymeacoffee.com/assets/img/BMC-btn-logo.svg" alt="Buy me a coffee">
+          <span>Buy me a coffee</span></a>
+
+      </div>
+      <div style="margin-top: 10px;">
+        <div id="notifyuser" style="font-weight: bold; margin-top: 5px;"></div>
+      </div>
   </div>
 
-  <button id="fetchButton" title="Get Chat Questions" class="btn3 prevent-select ">Get Chat Questions</button>
-  <button id="downloadButton" title="Download Selected Questions" class="btn3 prevent-select ">Download</button>
-
-  <div class="footer-div" id="footer-div">
-    <a class="bmc-button prevent-select " target="_blank" href="https://www.buymeacoffee.com/mega785"><img
-        src="https://www.buymeacoffee.com/assets/img/BMC-btn-logo.svg" alt="Buy me a coffee"><span
-        style="margin-left:5px">Buy me a coffee</span></a>
-
-    <div id="notifyuser" style="font-weight: bold; margin-top: 5px;" class="prevent-select">
-    </div>
-  </div>
-
+  </section>
   <script src="./dist/html2pdf.bundle.min.js"></script>
   <!-- <script src="utils.js"></script> -->
   <script type="module" src="popup.js"></script>
