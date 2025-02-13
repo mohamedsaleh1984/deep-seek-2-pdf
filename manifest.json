@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "DeepSeek Chat to PDF",
-  "version": "1.0",
+  "version": "2.0",
   "description": "Free extension to help users to convert DeepSeek chat to pdf file.",
   "permissions": [
     "activeTab",
