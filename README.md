@@ -23,5 +23,5 @@ Give it a try—it’s free, fast, and super easy to use! 😊
 6. Press download
 
 ### Screenshot
-![Screenshot](./screenshot/Screenshot.png)
+![Screenshot](./screenshot/_screenshot.png)
 
